@@ -55,7 +55,11 @@ cd terraform-provider-hashicups
 ########################################################
 # ⚠ CLEAN UP REPO ⚠
 ########################################################
-# 1. Replace localhost:19090 with docker_compose_api_1:9090 in data_source_coffee.go, line 73
+# 1. Replace localhost:19090 with docker_compose_api_1:9090 in 
+#    a. hashicups/data_source_coffee.go, line 73
+#    b. terraform-provider-hashicups/vendor/github.com/hashicorp-demoapp/   hashicups-client-go/client.go, line 13
+#    c. terraform-provider-hashicups/vendor/github.com/hashicorp-demoapp/hashicups-client-go/client.go, line 11
+
 # 2. Delete terraform-provider-hashicups/vendor directory
 # 3. Delete go.mod and go.sum files
 # 4. Main.tf - remove creds since we will use ENV
