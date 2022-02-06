@@ -52,6 +52,11 @@ RUN wget --quiet https://releases.hashicorp.com/terraform/${TF_Version}/terrafor
   && mv terraform /usr/bin \
   && rm terraform_${TF_Version}_linux_amd64.zip
 
+# Install Linux stuff
+RUN apt-get update \
+    && apt-get install tree -y \
+    && apt-get install make -y
+
 # Clean up
 RUN apt-get autoremove -y \
     && apt-get clean -y \
