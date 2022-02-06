@@ -1,7 +1,7 @@
 terraform {
   required_providers {
     hashicups = {
-      version = "~> 0.3.1"
+      version = "0.3.3"
       source  = "hashicorp.com/edu/hashicups"
     }
   }

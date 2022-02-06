@@ -66,3 +66,9 @@ terraform plan
 
 # Apply
 terraform apply --auto-approve
+
+#######################################################
+# Redo
+#######################################################
+# To pull the repo, use:
+git clone --branch implement-read https://github.com/hashicorp/terraform-provider-hashicups

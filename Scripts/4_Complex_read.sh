@@ -10,7 +10,7 @@ HASHICUPS_TOKEN=$(curl -X POST docker_compose_api_1:9090/signin -d '{"username":
 ########################################################
 # Play with orders
 ########################################################
-# Create
+# Create order
 curl -X POST -H "Authorization: ${HASHICUPS_TOKEN}" docker_compose_api_1:9090/orders -d '[{"coffee": { "id":1 }, "quantity":4}, {"coffee": { "id":3 }, "quantity":3}]'
 # {
 #    "id":1,
@@ -50,15 +50,20 @@ curl -X GET -H "Authorization: ${HASHICUPS_TOKEN}" docker_compose_api_1:9090/ord
 ########################################################
 # Clone branch that has completed code because of weird JSON error
 git clone --branch implement-complex-read https://github.com/hashicorp/terraform-provider-hashicups
-
 cd terraform-provider-hashicups
 
-# Cleanup
-go mod tidy
+########################################################
+# ⚠ CLEAN UP REPO ⚠
+########################################################
+# 1. Replace localhost:19090 with docker_compose_api_1:9090 in data_source_coffee.go, line 73
+# 2. Delete terraform-provider-hashicups/vendor directory
+# 3. Delete go.mod and go.sum files
+# 4. Main.tf - remove creds since we will use ENV
+########################################################
+# Create empty go.mod file because the one from the repo is trash
+go mod init terraform-provider-hashicups
 
-# Replace localhost in data_source_coffee.go, line 73
-
-# Folder for vendor dependencies - reads from go.mod
+# Create vendor directory for downloading dependencies
 go mod vendor
 
 # Variables for build
@@ -81,7 +86,10 @@ cd examples
 export HASHICUPS_USERNAME=education
 export HASHICUPS_PASSWORD=test123
 
-# Replace provider creds in main.tf
+# Ensure to replace provider creds in main.tf
+
+# Debug enabled
+export TF_LOG=TRACE
 
 # Initialize
 terraform init

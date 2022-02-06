@@ -27,7 +27,7 @@ TF_VENDOR_VERSION='0.3.3'
 # terraform -v
 # > Terraform v1.1.5
 # > on linux_amd64
-OS_ARCH='linux_amd64'
+OS_ARCH="$(go env GOHOSTOS)_$(go env GOHOSTARCH)" # Generate OS_ARCH dynamically
 
 # Create a plugins directory for the TF provider
 mkdir -p ~/.terraform.d/plugins/hashicorp.com/edu/hashicups/$TF_VENDOR_VERSION/$OS_ARCH
@@ -51,7 +51,7 @@ HASHICUPS_TOKEN=$(curl -X POST docker_compose_api_1:9090/signin -d '{"username":
 #######################################################
 # Initialize Terraform
 #######################################################
-cd ../terraform_hashicups
+cd ../1_Perform_CRUD
 
 # Initialize
 terraform init
