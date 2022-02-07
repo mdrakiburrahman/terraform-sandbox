@@ -17,6 +17,9 @@ mv terraform-provider-hashicups ~/.terraform.d/plugins/hashicorp.com/edu/hashicu
 # Change to examples directory
 cd examples
 
+# Debug enabled
+export TF_LOG=TRACE
+
 # Now, instead of updating provider block, we leverage the environment variables to authenticate
 export HASHICUPS_USERNAME=education
 export HASHICUPS_PASSWORD=test1234 # Incorrect password on purpose
