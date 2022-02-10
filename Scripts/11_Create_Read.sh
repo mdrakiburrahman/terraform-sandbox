@@ -102,5 +102,6 @@ export TF_LOG=TRACE
 
 terraform init && terraform plan
 terraform apply --auto-approve
+
 # Show state post apply
 terraform state show hashicups_order.edu
